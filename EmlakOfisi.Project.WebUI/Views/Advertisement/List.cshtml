@@ -1,0 +1,62 @@
+﻿@model AdvertismenetViewModel
+@{
+    ViewData["Title"] = "List";
+}
+<link href="~/css/Table.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <form class="form-inline" asp-action="List" method="post">
+            <div class="form-group input-group p-2">
+                <select class="form-control" name="selectedCity" asp-items="Model.SelectCity"></select>
+            </div>
+            <div class="form-group input-group p-2">
+                <select class="form-control" name="selectedRoom" asp-items="Model.SelectRoom"></select>
+            </div>
+            <input type="submit" value="Filtrele" class="btn btn-info btn-sm" />
+        </form>
+        <div class="col-12 m-0">
+            <table class="table table-image">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Şehir</th>
+                        <th scope="col">Tip</th>
+                        <th scope="col">Fiyat</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Advertisements)
+                    {
+                        <tr>
+                            @if (@item.ImageUrl != null)
+                            {
+                                <td class="w-25">
+                                    <img src="/images/@item.ImageUrl" class="img-fluid img-thumbnail" alt="Sheep">
+                                </td>
+                            }
+                            else
+                            {
+                                <td class="w-25">
+                                    <img src="/images/no.png" class="img-fluid img-thumbnail" alt="Sheep">
+                                </td>
+                            }
+
+                            <td>@item.Title</td>
+                            <td>@item.CityId</td>
+                            <td>@item.RoomId</td>
+                            <td>@item.Price</td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" asp-action="UpdateAdvertisement" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                                <a></a>
+                                <a></a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

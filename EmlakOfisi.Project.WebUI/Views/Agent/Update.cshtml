@@ -1,0 +1,25 @@
+﻿
+@model AgentViewModel
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Şifre Güncelle</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <form asp-action="Update" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Şifre" asp-for="Password">
+                    <span asp-validation-for="Password" class="form-text text-muted" style="color: red;"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Şifre Tekrarı" asp-for="PasswordVerify">
+                    <span asp-validation-for="PasswordVerify" class="form-text text-muted" style="color: red;"></span>
+                </div>
+                <input type="submit" class="btn btn-success" value="Kaydet" />
+            </form>
+        </div>
+    </div>
+</div>
